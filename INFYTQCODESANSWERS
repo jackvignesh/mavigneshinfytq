@@ -195,9 +195,24 @@ select PRODID, pdesc from product where prodid = (SELECT PRODID FROM SALEDETAIL 
 
 DAY 6 EXERCISE 62
 DAY 6 EXERCISE 63
+SELECT prodid, category, pdesc, price
+FROM product p1 WHERE price IN 
+(
+SELECT MAX(price) FROM product p2 
+WHERE p1.category = p2.category
+)
+
 DAY 6 EXERCISE 64
+select sname from salesman sm where sm.sname not IN (select distinct sname from salesman sm inner join sale s2 on sm.sid = s2.sid)
+
 DAY 6 EXERCISE 65
+sELECT sname FROM salesman sl WHERE sl.sid = (SELECT sid FROM sale s WHERE s.sldate LIKE '%JUN-15' group by sid having count(sid) >=1)
+
 DAY 6 EXERCISE 66
+SELECT sm.sid,sm.sname,sm.location	FROM salesman sm, sale s,saledetail sd ,product p  WHERE sm.sid=s.sid AND s.saleid=sd.saleid AND p.prodid=sd.prodid GROUP BY sm.sid,sm.sname,sm.location HAVING sum(price*quantity*(1-discount/100))>
+(SELECT avg(sum(price*quantity*(1-discount/100))) FROM sale s1, saledetail sd1, product p1, salesman sm1 WHERE s1.saleid=sd1.saleid  AND p1.prodid=sd1.prodid 
+	AND s1.sid=sm1.sid AND sm.location=sm1.location GROUP BY s1.sid )
+ 
 DAY 6 EXERCISE 67
 DAY 6 EXERCISE 68
 DAY 6 EXERCISE 69
@@ -543,6 +558,30 @@ SELECT DISTINCT CC.CUSTID, CC.CUSTNAME FROM CUSTOMER C INNER JOIN CUSTOMER CC ON
 DAY 5 COLLABRATIVE ASSIGNMENT 85
 SELECT C.CUSTNAME, P.BILLAMOUNT FROM CUSTOMER C INNER JOIN PURCHASEBILL P ON P.CUSTID = C.CUSTID WHERE P.BILLAMOUNT > 5000
 
+DAY 6 COLLABRATIVE ASSIGNMENT 93
+SELECT DISTINCT i.itemcode, i.itemtype, i.descr, i.category
+FROM item i , purchasebill pb
+WHERE i.itemcode = pb.itemcode
+
+DAY 6 COLLABRATIVE ASSIGNMENT 94
+select i.itemcode, i.itemtype, i.descr, i.category from item i where  i.price = (select min(quotedprice) from quotation q where q.qstatus = 'Rejected') 
+
+DAY 6 COLLABRATIVE ASSIGNMENT 95
+SELECT i.itemcode, i.descr
+FROM item i, quotation q
+WHERE i.itemcode = q.ITEMCODE AND q.qstatus IN ('Rejected','Closed') and q.quotedprice in (select max(q.quotedprice) from quotation q where q.qstatus in ('Rejected','Closed'))
+
+DAY 6 COLLABRATIVE ASSIGNMENT 96
+SELECT itemcode, descr, price FROM (select itemcode, descr, price from item order by price desc) where ROWNUM = 2
+
+DAY 6 COLLABRATIVE ASSIGNMENT 97
+DAY 6 COLLABRATIVE ASSIGNMENT 98
+DAY 6 COLLABRATIVE ASSIGNMENT 99
+DAY 6 COLLABRATIVE ASSIGNMENT 100
+DAY 6 COLLABRATIVE ASSIGNMENT 101
+DAY 6 COLLABRATIVE ASSIGNMENT 102
+DAY 6 COLLABRATIVE ASSIGNMENT 103
+DAY 6 COLLABRATIVE ASSIGNMENT 104
 
 =============================================================================
 
