@@ -48,3 +48,57 @@ swedish_words_list=translate(bilingual_dict, english_words_list)
 print("The equivalent swedish words are:",swedish_words_list)
 
 ==========================================================================================================================
+
+Try Out 
+
+#goal of this tryout is to create a function from scratch and invoke it for the given problem
+def Fahrenheit_to_Celsius(x):
+    celsius = (x-32)*(5/9)
+    print ( celsius )
+def Celsius_to_Fahrenheit(x):
+    fah = ((x)*(9/5))+32
+    print ( fah )
+
+Fahrenheit_to_Celsius(98.4)
+Celsius_to_Fahrenheit(36.9)
+
+==============================================================================================================================
+
+Exercise 24
+
+//PF-Exer-24
+//This verification is based on string match.
+
+package main
+
+import ("fmt")
+func find_square(n int){
+        var square int = 0
+        square = n*n
+        fmt.Println(square)
+}
+func main() {
+    //Write your program logic here
+    var n int = 3
+    find_square(n)
+}
+
+==============================================================================================================================
+
+Exercise 25
+
+//JS-Exer-25
+
+//Start writing your code here
+function find_sum(n){
+    var sum=0
+    for (i=1;i<=n;i++){
+        sum = sum+i
+    }
+    console.log(sum)
+}
+find_sum(6)
+
+===============================================================================================================================
+
+
